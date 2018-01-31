@@ -11,25 +11,27 @@ getSamplesOf(RDobject, parm, steps, condition = "A")
 
 \item{parm}{A parameter name string i.e  p, f or gene name.}
 
-\item{steps}{An integer representing number of iterations  used while calling denoiseq.}
+\item{steps}{An integer representing number of iterations  used while calling
+denoiseq.}
 
-\item{condition}{A character (either  A or B) representing the two experimental conditions.}
+\item{condition}{A character (either  A or B) representing the two
+experimental conditions.}
 }
 \value{
 A vector  of parameter samples, of length equal to steps.
 }
 \description{
-Extracts posterior samples of individual parameters contained in the  output slot of
-the readsData object returned by denoiSeq.
+Extracts posterior samples of individual parameters contained in the  output
+slot of the readsData object returned by denoiSeq.
 }
 \examples{
 #pre-filtering to remove lowly expressed genes
-ERCC <- ERCC[rowSums(ERCC)>0,]
-RD <- new('readsData',counts = ERCC)
+ERCC <- ERCC[rowSums(ERCC)>0, ]
+RD <- new('readsData', counts = ERCC)
 steps <- 30
 #30 steps are just for illustration here. Atleast 5000 steps are adequate.
-BI <- denoiseq(RD,steps)
-samples <- getSamplesOf(BI,'ERCC-00051',steps)
-plot(samples,type='l', main = 'History plot of ERCC-00051')
+BI <- denoiseq(RD, steps)
+samples <- getSamplesOf(BI, 'ERCC-00051', steps)
+plot(samples, type='l', main = 'History plot of ERCC-00051')
 
 }
